@@ -1,0 +1,47 @@
+<div class="container mt-3">
+  <h4 class="mb-4">Employee Data</h4>
+  <table class="table table-bordered table-striped" *ngIf="isReady">
+    <thead class="table-light">
+      <tr>
+        <th>Kode Karyawan</th>
+        <th>Nama Karyawan</th>
+        <th>Status Kontrak</th>
+        <th>Tanggal Mulai Kontrak</th>
+        <th>Tanggal Akhir Kontrak</th>
+        <th>Alamat</th>
+        <th>Nomor Kontak</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pagedItems()">
+        <td>{{ item.code }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.isContract ? 'Kontrak' : 'Tetap' }}</td>
+        <td>{{ item.startDt ? (item.startDt | date: 'd MMMM y') : '-' }}</td>
+        <td>{{ item.endDt ? (item.endDt | date: 'd MMMM y') : '-' }}</td>
+        <td>{{ item.address ? item.address : '-' }}</td>
+        <td>{{ item.phone ? item.phone : '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav class="mt-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+      </li>
+
+      <li
+        class="page-item"
+        *ngFor="let page of [].constructor(totalPages()); let i = index"
+        [class.active]="currentPage === i + 1"
+      >
+        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages()">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

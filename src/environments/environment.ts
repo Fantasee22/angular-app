@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  BeUrl: "http://localhost:5033",
+  BeLocal: "http://localhost/myapp1",
+  BeLocal2: "https://localhost:7033",
+  BeIis: "http://localhost/myapp1"
 };
 
 /*
